@@ -45,8 +45,8 @@ def read_summary(path: Path) -> str:
 
 
 BASE_DIR = Path(__file__).parent
-summary_text = read_summary(BASE_DIR / "me" / "summary.txt")
-linkedin_text = read_linkedin_profile(BASE_DIR / "me" / "linkedin.pdf")
+summary_text = read_summary(BASE_DIR / "summary.txt")
+linkedin_text = read_linkedin_profile(BASE_DIR / "linkedin.pdf")
 name = os.getenv("NAME") or "Your AI Twin"
 
 system_prompt = f"""
@@ -195,5 +195,6 @@ def chat_endpoint(payload: ChatRequest) -> ChatResponse:
 
 if __name__ == "__main__":
     import uvicorn
+
 
     uvicorn.run("app:app", host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
