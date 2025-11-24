@@ -1,13 +1,8 @@
 # Core dependencies for app.py and app.ipynb
+fastapi==0.115.5
+uvicorn==0.32.1
 python-dotenv==1.2.1
 openai==2.8.1
 requests==2.32.5
 pypdf==6.3.0
-gradio==4.44.1
-huggingface_hub<0.20
-fastapi==0.115.5
-uvicorn==0.32.1
 
-# Optional: For Jupyter notebook support
-jupyter==1.1.1
-ipykernel==6.29.5
