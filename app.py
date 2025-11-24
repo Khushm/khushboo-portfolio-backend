@@ -19,6 +19,7 @@ from fastapi import FastAPI, HTTPException
 from openai import OpenAI
 from pypdf import PdfReader
 from pydantic import BaseModel, Field
+from starlette.middleware.cors import CORSMiddleware
 
 load_dotenv(override=True)
 
@@ -176,6 +177,19 @@ class ChatResponse(BaseModel):
 
 app = FastAPI(title="AI Twin Chatbot")
 
+origins = [
+    "https://khushboo.netlify.app", 
+    "https://khushboo-portfolio-backend.onrender.com", 
+    "*", # Safest to include '*' to cover Netlify's build URL if needed.
+    "http://localhost:3000" # For local development testing
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"], # Allow all methods (GET, POST, OPTIONS, etc.)
+    allow_headers=["*"], # Allow all headers
+)
 
 @app.get("/health")
 def healthcheck() -> dict:
@@ -198,3 +212,4 @@ if __name__ == "__main__":
 
 
     uvicorn.run("app:app", host="0.0.0.0", port=int(os.getenv("PORT", 8000)))
+
